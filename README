@@ -1,0 +1,34 @@
+Problema 1. Jocuri de societate
+
+Algoritmul implementat are la baza un vector care retine toate valorile 
+obiectelor tip shield citite initial. In paralel, se insumeaza obiectele
+tip heal pentru a fi adaugate la valoarea hp data initial. 
+Vectorul scuturilor este sortat descrescator prin metoda selection sort
+( in functia vector_sort() ) pentru a ajunge mai usor la prima valoare
+portivita fiecarui pas. 
+Ulterior, se citesc valorile fiecarui inamic si se apeleaza functia boss_fight() care cauta cel mai bun scut pentru valoarea citita. La fiecare utilizare a unui scut, acesta este marcat ca fiind utilizat (valoarea -1), iar vectorul este resortat cu elementele ramase.
+De asemenea, am tratat separat cele doua cazuri posibie (cazul in care exista un scut mai mic sau egal decat puterea inamicului sau cazul in care se alege cel mai mic scut, mai mare decat valoarea inamicului).
+In main() am tratat cele trei cazuri in functie de rezultatul returnat de 
+functia de prelucrare. Variabila hp se va modifica doar in cazul in care scutul ales va fi mai mic decat valoarea inamicului. Daca scutul ales va fi mai mare decat valoarea inamicului, valoarea variabilei hp va ramane nemodificata, conform cerintei. In cazul in care valoarea variabilei hp va fi 0 sau negativa in urma prelucrarii, jocul se va incheia prin pierdere.
+
+
+Problema 2. Forme
+
+Algoritmul implementat este modularizat in functii de tip void pentru fiecare forma definita in enunt, care afiseaza forma sub forma de '*' si ' '. In functia main() sunt citite, dupa caz, forma, dimensiunea si unghiul si sunt tratate cazurile de incompatibilitate.
+(dimensiune < 0 sau unghi < 0), tinand cont ca pe ultimul rand nu trebuie afisat caracterul \n. Unghiurile au fost tratate utilizand llabs (modul pentru variabile long), intrucat pot fi negative. 
+In functia triunghi au fost tratate separat unghiurile negative prin aplicarea perioadei de 360 de grade, iar afisarea s-a realizat utiizand cele 4 cazuri de baza posibile (0, 90, 180, 270).
+
+
+Problema 3. Circuits
+
+Algoritmul implementat este modularizat in 2 functii de tip void care trateaza cele doua tipuri de circuite. Functia main apeleaza cele doua functii, dupa cum este citita secventa de caractere.
+Functia kirchhoff_1 citese nodurile si curentii si marcheaza in vectorul corespunzator(de intrare sau de iesire), valoarea tensiunii. De asemenea, marcheaza in vectorul pass daca nodul a fost sau nu vizitat (pentru a verifica ulterior daca circuitul este deschis sau inchis). La final se compara daca valorile curentilor de intrare si iesire sunt egale sau nu si se afiseaza mesajul corespunzator (utilizand o eroare numerica din cauza operatiilor pe tipul de date double). 
+Functia kirchhoff_2 citeste si prelucreaza secventa de rezistoare si generatoare, trateaza cazurile de eroare si compara, la final, daca variabilele in care sunt insumate bateriile si consumatorii au aceeasi valoare.
+
+
+Problema 4. Segment display
+
+Algoritmul implementat este modularizat in 2 functii de tip void care prelucreaza forma cifrei (fill) si modificarile (modify). 
+Structura de date defineste cele 7 segmente ilustrate si in imaginea din enuntul problemei. In functia main am definit un vector de tipul structurii sus mentionate in care am definit ce segmente sunt necesare fiecarei cifre, am citit si solutionat cazurile de eroare si am apelat functia corespunzatoare caracterului citit.
+Functia fill verifica segmentele necesare cifrei si le aloca in matrice corespunzator, prin marcarea campului cu valoarea 1. 
+In functia modify am calculat linia sau coloana corespunzatoare translatiei (restul impartirii) si am format in matricea temp noua forma. La final, matricea a a fost actualizata cu datele din temp.
