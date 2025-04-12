@@ -1,34 +1,46 @@
-Problema 1. Jocuri de societate
+# Table of Contents
 
-Algoritmul implementat are la baza un vector care retine toate valorile 
-obiectelor tip shield citite initial. In paralel, se insumeaza obiectele
-tip heal pentru a fi adaugate la valoarea hp data initial. 
-Vectorul scuturilor este sortat descrescator prin metoda selection sort
-( in functia vector_sort() ) pentru a ajunge mai usor la prima valoare
-portivita fiecarui pas. 
-Ulterior, se citesc valorile fiecarui inamic si se apeleaza functia boss_fight() care cauta cel mai bun scut pentru valoarea citita. La fiecare utilizare a unui scut, acesta este marcat ca fiind utilizat (valoarea -1), iar vectorul este resortat cu elementele ramase.
-De asemenea, am tratat separat cele doua cazuri posibie (cazul in care exista un scut mai mic sau egal decat puterea inamicului sau cazul in care se alege cel mai mic scut, mai mare decat valoarea inamicului).
-In main() am tratat cele trei cazuri in functie de rezultatul returnat de 
-functia de prelucrare. Variabila hp se va modifica doar in cazul in care scutul ales va fi mai mic decat valoarea inamicului. Daca scutul ales va fi mai mare decat valoarea inamicului, valoarea variabilei hp va ramane nemodificata, conform cerintei. In cazul in care valoarea variabilei hp va fi 0 sau negativa in urma prelucrarii, jocul se va incheia prin pierdere.
+1. [Problem 1: Board Games](#problem-1-board-games)
+2. [Problem 2: Shapes](#problem-2-shapes)
+3. [Problem 3: Circuits](#problem-3-circuits)
+4. [Problem 4: Segment Display](#problem-4-segment-display)
 
+---
 
-Problema 2. Forme
+# Problem 1: Board Games
 
-Algoritmul implementat este modularizat in functii de tip void pentru fiecare forma definita in enunt, care afiseaza forma sub forma de '*' si ' '. In functia main() sunt citite, dupa caz, forma, dimensiunea si unghiul si sunt tratate cazurile de incompatibilitate.
-(dimensiune < 0 sau unghi < 0), tinand cont ca pe ultimul rand nu trebuie afisat caracterul \n. Unghiurile au fost tratate utilizand llabs (modul pentru variabile long), intrucat pot fi negative. 
-In functia triunghi au fost tratate separat unghiurile negative prin aplicarea perioadei de 360 de grade, iar afisarea s-a realizat utiizand cele 4 cazuri de baza posibile (0, 90, 180, 270).
+The implemented algorithm uses a vector to store all initial values of shield objects. Simultaneously, heal objects are accumulated to add to the initial HP value. The shield vector is sorted in descending order using the **selection sort** method (in the `vector_sort()` function) to allow for easier access to the most suitable shield at each step. 
 
+Subsequently, the values of each enemy are read, and the `boss_fight()` function is called to search for the best shield for the given enemy value. After each shield usage, it is marked as used (value -1), and the vector is resorted to reflect the remaining shields. 
 
-Problema 3. Circuits
+Two scenarios are handled separately: 
+1. If there is a shield smaller than or equal to the enemy's power, 
+2. If the smallest shield greater than the enemy's power is chosen.
 
-Algoritmul implementat este modularizat in 2 functii de tip void care trateaza cele doua tipuri de circuite. Functia main apeleaza cele doua functii, dupa cum este citita secventa de caractere.
-Functia kirchhoff_1 citese nodurile si curentii si marcheaza in vectorul corespunzator(de intrare sau de iesire), valoarea tensiunii. De asemenea, marcheaza in vectorul pass daca nodul a fost sau nu vizitat (pentru a verifica ulterior daca circuitul este deschis sau inchis). La final se compara daca valorile curentilor de intrare si iesire sunt egale sau nu si se afiseaza mesajul corespunzator (utilizand o eroare numerica din cauza operatiilor pe tipul de date double). 
-Functia kirchhoff_2 citeste si prelucreaza secventa de rezistoare si generatoare, trateaza cazurile de eroare si compara, la final, daca variabilele in care sunt insumate bateriile si consumatorii au aceeasi valoare.
+In the `main()` function, the three scenarios are handled depending on the result returned by the processing function. The **HP** variable is modified only if the chosen shield is smaller than the enemy's value. If the chosen shield is greater than the enemy's value, the **HP** remains unchanged, as required. If the **HP** value becomes 0 or negative after processing, the game ends in a loss.
 
+---
 
-Problema 4. Segment display
+# Problem 2: Shapes
 
-Algoritmul implementat este modularizat in 2 functii de tip void care prelucreaza forma cifrei (fill) si modificarile (modify). 
-Structura de date defineste cele 7 segmente ilustrate si in imaginea din enuntul problemei. In functia main am definit un vector de tipul structurii sus mentionate in care am definit ce segmente sunt necesare fiecarei cifre, am citit si solutionat cazurile de eroare si am apelat functia corespunzatoare caracterului citit.
-Functia fill verifica segmentele necesare cifrei si le aloca in matrice corespunzator, prin marcarea campului cu valoarea 1. 
-In functia modify am calculat linia sau coloana corespunzatoare translatiei (restul impartirii) si am format in matricea temp noua forma. La final, matricea a a fost actualizata cu datele din temp.
+The algorithm is modularized into void functions for each shape defined in the problem statement, which display the shape using '*' and ' '. In the `main()` function, the shape, size, and angle are read, and incompatible cases (such as negative size or angle) are handled. Additionally, the final row does not output the newline character.
+
+Angles are processed using **`llabs`** (absolute value for long variables), as they can be negative. In the triangle function, negative angles are handled separately by applying a 360-degree period, and the shape is displayed based on four basic cases: **0°**, **90°**, **180°**, and **270°**.
+
+---
+
+# Problem 3: Circuits
+
+The algorithm is modularized into two void functions that handle the two types of circuits. The `main` function calls these functions depending on the input sequence of characters.
+
+The `kirchhoff_1` function reads the nodes and currents, marking the voltage in the corresponding vectors (input or output). It also marks whether the node has been visited in the `pass` vector to verify if the circuit is open or closed. At the end, the function compares the input and output currents to determine if they are equal and displays the corresponding message (accounting for numerical errors due to operations on **`double`** data types).
+
+The `kirchhoff_2` function reads and processes the resistor and generator sequence, handles error cases, and compares the summed values of batteries and consumers to check if they match.
+
+---
+
+# Problem 4: Segment Display
+
+The algorithm is modularized into two void functions that process the digit shape (**`fill`**) and modifications (**`modify`**). The data structure defines the seven segments illustrated in the problem statement image. In the `main` function, a vector of the above structure type is defined to specify the required segments for each digit. Error cases are handled, and the corresponding function for the read character is called.
+
+The **`fill`** function checks which segments are needed for the digit and allocates them in the matrix by marking the field with the value **1**. In the **`modify`** function, the corresponding row or column for the translation (using modulo operation) is calculated, and the new shape is formed in a temporary matrix. Finally, the matrix is updated with the data from the temporary matrix.
