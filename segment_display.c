@@ -1,4 +1,4 @@
-//Grigore Mihnea - Andrei, 331CA
+// Copyright Grigore Mihnea - Andrei
 #include  <stdio.h>
 #include <stdlib.h>
 
